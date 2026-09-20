@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerok | Links</title>
+  <!-- Iconos de FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #030007;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+      perspective: 1000px;
+    }
+
+    /* Fondo animado tipo agua / esferas flotantes neón */
+    .neon-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #0a0112 0%, #000000 100%);
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.65;
+      animation: floatWater 18s ease-in-out infinite alternate;
+    }
+
+    .blob-1 {
+      width: 380px;
+      height: 380px;
+      background: #a855f7;
+      top: 10%;
+      left: -100px;
+    }
+
+    .blob-2 {
+      width: 420px;
+      height: 420px;
+      background: #ef4444;
+      bottom: 10%;
+      right: -120px;
+      animation-delay: -5s;
+    }
+
+    .blob-3 {
+      width: 320px;
+      height: 320px;
+      background: #7e22ce;
+      bottom: -50px;
+      left: 10%;
+      animation-delay: -10s;
+    }
+
+    .blob-4 {
+      width: 300px;
+      height: 300px;
+      background: #b91c1c;
+      top: -50px;
+      right: 15%;
+      animation-delay: -14s;
+    }
+
+    @keyframes floatWater {
+      0% {
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      }
+      33% {
+        transform: translate(30px, -50px) scale(1.1) rotate(120deg);
+        border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%;
+      }
+      66% {
+        transform: translate(-20px, 40px) scale(0.9) rotate(240deg);
+        border-radius: 30% 60% 50% 50% / 30% 60% 40% 70%;
+      }
+      100% {
+        transform: translate(40px, 20px) scale(1.05) rotate(360deg);
+        border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+      }
+    }
+
+    /* Tarjeta principal con soporte para rotación 3D */
+    .card-wrapper {
+      perspective: 1000px;
+      width: 100%;
+      max-width: 420px;
+      z-index: 1;
+    }
+
+    .card {
+      background: rgba(10, 3, 18, 0.75);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 24px;
+      padding: 35px 25px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 35px rgba(168, 85, 247, 0.3), 
+                  0 0 15px rgba(239, 68, 68, 0.25),
+                  inset 0 0 20px rgba(168, 85, 247, 0.15);
+      transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    /* Contenedor del avatar con Badge de LIVE */
+    .avatar-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #a855f7;
+      box-shadow: 0 0 25px #a855f7, 0 0 40px #ef4444;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .avatar-container:hover .avatar {
+      transform: scale(1.05);
+    }
+
+    /* Badge parpadeante de "LIVE / STREAMER" */
+    .live-badge {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      background: #ef4444;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 0 12px #ef4444;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      animation: pulseDot 1s infinite alternate;
+    }
+
+    @keyframes pulseDot {
+      0% { opacity: 0.3; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(239, 68, 68, 0.5);
+      letter-spacing: 1.5px;
+    }
+
+    .bio {
+      font-size: 13px;
+      color: #d1d5db;
+      margin-bottom: 25px;
+      line-height: 1.4;
+    }
+
+    /* Reproductor de Música Neón con Ecualizador Animado */
+    .music-player {
+      background: rgba(0, 0, 0, 0.65);
+      border-radius: 14px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+    }
+
+    .song-details {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Ecualizador de ondas de sonido */
+    .equalizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 18px;
+    }
+
+    .bar {
+      width: 3px;
+      height: 4px;
+      background: #ef4444;
+      border-radius: 2px;
+      transition: height 0.2s ease;
+    }
+
+    .playing .bar {
+      animation: bounce 0.8s ease-in-out infinite alternate;
+    }
+
+    .playing .bar:nth-child(1) { animation-delay: 0.1s; background: #a855f7; }
+    .playing .bar:nth-child(2) { animation-delay: 0.3s; background: #ef4444; }
+    .playing .bar:nth-child(3) { animation-delay: 0.2s; background: #a855f7; }
+    .playing .bar:nth-child(4) { animation-delay: 0.4s; background: #ef4444; }
+
+    @keyframes bounce {
+      0% { height: 4px; }
+      100% { height: 18px; }
+    }
+
+    .song-info {
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .song-title {
+      font-weight: bold;
+      color: #f3e8ff;
+      text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+    }
+
+    .song-artist {
+      color: #f43f5e;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #a855f7, #ef4444);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #ef4444, 0 0 10px #a855f7;
+    }
+
+    /* Lista de enlaces estilo neón con brillos */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: rgba(12, 4, 20, 0.85);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 15px;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Destello de luz al pasar el cursor sobre los botones */
+    .link-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .link-btn:hover::before {
+      left: 100%;
+    }
+
+    .link-btn:hover {
+      background: rgba(168, 85, 247, 0.2);
+      border-color: #ef4444;
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 0 10px rgba(168, 85, 247, 0.5);
+      color: #fff;
+    }
+
+    .link-btn i {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Esferas de luz neón flotantes -->
+  <div class="neon-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+  </div>
+
+  <div class="card-wrapper" id="cardWrapper">
+    <div class="card" id="card">
+      
+      <!-- Avatar con insignia LIVE -->
+      <div class="avatar-container">
+        <img src="avatar.png" alt="Avatar Zerok" class="avatar">
+        <div class="live-badge">
+          <span class="live-dot"></span> Kick
+        </div>
+      </div>
+      
+      <h1>ZEROK</h1>
+      <p class="bio">Down que quiere ser famoso | En vivo casi nunca pero doy show cuando prendo</p>
+
+      <!-- Reproductor de audio con ecualizador -->
+      <div class="music-player">
+        <div class="song-details">
+          <div class="equalizer" id="equalizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+          <div class="song-info">
+            <div class="song-title">Fluorescent Adolescent</div>
+            <div class="song-artist">Arctic Monkeys</div>
+          </div>
+        </div>
+        <button class="play-btn" id="musicBtn" onclick="toggleMusic()">
+          <i class="fa-solid fa-play" id="musicIcon"></i>
+        </button>
+      </div>
+
+      <!-- Etiqueta de audio oculta -->
+      <audio id="bgMusic" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+      </audio>
+
+      <!-- Enlaces a redes -->
+      <div class="links">
+        <a href="https://kick.com/new-zerok-of" target="_blank" class="link-btn">
+          <i class="fa-solid fa-bolt" style="color: #53FC18;"></i> Kick
+        </a>
+        <a href="https://www.youtube.com/@zerok.of." target="_blank" class="link-btn">
+          <i class="fa-brands fa-youtube" style="color: #FF0000;"></i> YouTube
+        </a>
+        <a href="https://discord.gg/DjeBza6ne" target="_blank" class="link-btn">
+          <i class="fa-brands fa-discord" style="color: #5865F2;"></i> Servidor de Discord
+        </a>
+        <a href="https://www.instagram.com/zerok.of/?hl=es" target="_blank" class="link-btn">
+          <i class="fa-brands fa-instagram" style="color: #E1306C;"></i> Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const musicIcon = document.getElementById('musicIcon');
+    const equalizer = document.getElementById('equalizer');
+
+    // Control de música y animación del ecualizador
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        musicIcon.classList.remove('fa-play');
+        musicIcon.classList.add('fa-pause');
+        equalizer.classList.add('playing');
+      } else {
+        music.pause();
+        musicIcon.classList.remove('fa-pause');
+        musicIcon.classList.add('fa-play');
+        equalizer.classList.remove('playing');
+      }
+    }
+
+    // Efecto 3D / Inclinación de la tarjeta con el movimiento del ratón
+    const card = document.getElementById('card');
+    const wrapper = document.getElementById('cardWrapper');
+
+    wrapper.addEventListener('mousemove', (e) => {
+      const rect = wrapper.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      const rotateX = (-y / rect.height) * 15;
+      const rotateY = (x / rect.width) * 15;
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  </script>
+
+</body>
+</html>
