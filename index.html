@@ -15,7 +15,7 @@
     }
 
     body {
-      background: #030007;
+      background: #020005;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -27,7 +27,7 @@
       perspective: 1000px;
     }
 
-    /* Fondo animado tipo agua / esferas flotantes neón */
+    /* Fondo animado tipo agua / esferas flotantes neón dinámicas */
     .neon-bg {
       position: fixed;
       top: 0;
@@ -36,50 +36,50 @@
       height: 100vh;
       z-index: -1;
       overflow: hidden;
-      background: radial-gradient(circle at center, #0a0112 0%, #000000 100%);
+      background: radial-gradient(circle at center, #120124 0%, #030007 70%, #000000 100%);
     }
 
     .blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.65;
-      animation: floatWater 18s ease-in-out infinite alternate;
+      filter: blur(90px);
+      opacity: 0.7;
+      animation: floatWater 14s ease-in-out infinite alternate;
     }
 
     .blob-1 {
-      width: 380px;
-      height: 380px;
-      background: #a855f7;
-      top: 10%;
+      width: 400px;
+      height: 400px;
+      background: #c084fc;
+      top: 5%;
       left: -100px;
     }
 
     .blob-2 {
-      width: 420px;
-      height: 420px;
-      background: #ef4444;
-      bottom: 10%;
+      width: 450px;
+      height: 450px;
+      background: #f87171;
+      bottom: 5%;
       right: -120px;
-      animation-delay: -5s;
+      animation-delay: -4s;
     }
 
     .blob-3 {
-      width: 320px;
-      height: 320px;
-      background: #7e22ce;
-      bottom: -50px;
-      left: 10%;
-      animation-delay: -10s;
+      width: 350px;
+      height: 350px;
+      background: #9333ea;
+      bottom: -30px;
+      left: 15%;
+      animation-delay: -8s;
     }
 
     .blob-4 {
-      width: 300px;
-      height: 300px;
-      background: #b91c1c;
-      top: -50px;
-      right: 15%;
-      animation-delay: -14s;
+      width: 320px;
+      height: 320px;
+      background: #dc2626;
+      top: -30px;
+      right: 20%;
+      animation-delay: -11s;
     }
 
     @keyframes floatWater {
@@ -87,21 +87,17 @@
         transform: translate(0px, 0px) scale(1) rotate(0deg);
         border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
       }
-      33% {
-        transform: translate(30px, -50px) scale(1.1) rotate(120deg);
+      50% {
+        transform: translate(40px, -40px) scale(1.15) rotate(180deg);
         border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%;
       }
-      66% {
-        transform: translate(-20px, 40px) scale(0.9) rotate(240deg);
-        border-radius: 30% 60% 50% 50% / 30% 60% 40% 70%;
-      }
       100% {
-        transform: translate(40px, 20px) scale(1.05) rotate(360deg);
-        border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+        transform: translate(-30px, 30px) scale(0.95) rotate(360deg);
+        border-radius: 50% 50% 50% 50% / 60% 40% 60% 40%;
       }
     }
 
-    /* Tarjeta principal con soporte para rotación 3D */
+    /* Tarjeta principal con borde brillante giratorio */
     .card-wrapper {
       perspective: 1000px;
       width: 100%;
@@ -110,22 +106,43 @@
     }
 
     .card {
-      background: rgba(10, 3, 18, 0.75);
+      background: rgba(12, 3, 22, 0.8);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(239, 68, 68, 0.4);
+      border: 2px solid transparent;
+      background-clip: padding-box;
       border-radius: 24px;
       padding: 35px 25px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 0 35px rgba(168, 85, 247, 0.3), 
-                  0 0 15px rgba(239, 68, 68, 0.25),
-                  inset 0 0 20px rgba(168, 85, 247, 0.15);
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.35), 
+                  0 0 20px rgba(239, 68, 68, 0.3),
+                  inset 0 0 25px rgba(168, 85, 247, 0.15);
+      position: relative;
       transition: transform 0.1s ease-out, box-shadow 0.3s ease;
       transform-style: preserve-3d;
     }
 
-    /* Contenedor del avatar con Badge de LIVE */
+    /* Borde brillante exterior animado */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      background: linear-gradient(45deg, #a855f7, #ef4444, #3b82f6, #a855f7);
+      background-size: 400%;
+      z-index: -1;
+      border-radius: 26px;
+      animation: borderGlow 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes borderGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Contenedor del avatar con Badge de LIVE animado */
     .avatar-container {
       position: relative;
       display: inline-block;
@@ -137,76 +154,76 @@
       height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #a855f7;
-      box-shadow: 0 0 25px #a855f7, 0 0 40px #ef4444;
+      border: 4px solid #c084fc;
+      box-shadow: 0 0 30px #a855f7, 0 0 50px #ef4444;
       display: block;
       transition: transform 0.3s ease;
     }
 
     .avatar-container:hover .avatar {
-      transform: scale(1.05);
+      transform: scale(1.08) rotate(3deg);
     }
 
-    /* Badge parpadeante de "LIVE / STREAMER" */
     .live-badge {
       position: absolute;
       bottom: 5px;
       right: 10px;
-      background: #ef4444;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
       color: #fff;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 5px 12px;
       border-radius: 20px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      box-shadow: 0 0 12px #ef4444;
+      box-shadow: 0 0 15px #ef4444;
       display: flex;
       align-items: center;
-      gap: 5px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
     .live-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       background: #fff;
       border-radius: 50%;
-      animation: pulseDot 1s infinite alternate;
+      animation: pulseDot 0.8s infinite alternate;
     }
 
     @keyframes pulseDot {
       0% { opacity: 0.3; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1.3); }
     }
 
     h1 {
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 6px;
+      font-size: 30px;
+      font-weight: 900;
+      margin-bottom: 8px;
       color: #ffffff;
-      text-shadow: 0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(239, 68, 68, 0.5);
-      letter-spacing: 1.5px;
+      text-shadow: 0 0 12px rgba(168, 85, 247, 0.9), 0 0 25px rgba(239, 68, 68, 0.6);
+      letter-spacing: 2px;
     }
 
     .bio {
-      font-size: 13px;
-      color: #d1d5db;
+      font-size: 14px;
+      color: #e2e8f0;
       margin-bottom: 25px;
-      line-height: 1.4;
+      line-height: 1.5;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
     }
 
-    /* Reproductor de Música Neón con Ecualizador Animado */
+    /* Reproductor de Música Neón con Ecualizador */
     .music-player {
-      background: rgba(0, 0, 0, 0.65);
-      border-radius: 14px;
-      padding: 12px 18px;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 16px;
+      padding: 14px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 25px;
-      border: 1px solid rgba(168, 85, 247, 0.4);
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+      border: 1px solid rgba(168, 85, 247, 0.5);
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
     }
 
     .song-details {
@@ -215,18 +232,17 @@
       gap: 12px;
     }
 
-    /* Ecualizador de ondas de sonido */
     .equalizer {
       display: flex;
       align-items: flex-end;
       gap: 3px;
-      height: 18px;
+      height: 20px;
     }
 
     .bar {
       width: 3px;
       height: 4px;
-      background: #ef4444;
+      background: #f87171;
       border-radius: 2px;
       transition: height 0.2s ease;
     }
@@ -235,14 +251,14 @@
       animation: bounce 0.8s ease-in-out infinite alternate;
     }
 
-    .playing .bar:nth-child(1) { animation-delay: 0.1s; background: #a855f7; }
-    .playing .bar:nth-child(2) { animation-delay: 0.3s; background: #ef4444; }
-    .playing .bar:nth-child(3) { animation-delay: 0.2s; background: #a855f7; }
-    .playing .bar:nth-child(4) { animation-delay: 0.4s; background: #ef4444; }
+    .playing .bar:nth-child(1) { animation-delay: 0.1s; background: #c084fc; }
+    .playing .bar:nth-child(2) { animation-delay: 0.3s; background: #f87171; }
+    .playing .bar:nth-child(3) { animation-delay: 0.2s; background: #c084fc; }
+    .playing .bar:nth-child(4) { animation-delay: 0.4s; background: #f87171; }
 
     @keyframes bounce {
       0% { height: 4px; }
-      100% { height: 18px; }
+      100% { height: 20px; }
     }
 
     .song-info {
@@ -253,36 +269,36 @@
     .song-title {
       font-weight: bold;
       color: #f3e8ff;
-      text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+      text-shadow: 0 0 6px rgba(168, 85, 247, 0.6);
     }
 
     .song-artist {
-      color: #f43f5e;
+      color: #f87171;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .play-btn {
-      background: linear-gradient(135deg, #a855f7, #ef4444);
+      background: linear-gradient(135deg, #c084fc, #ef4444);
       border: none;
       color: white;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.7);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .play-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #ef4444, 0 0 10px #a855f7;
+      transform: scale(1.15);
+      box-shadow: 0 0 25px #ef4444, 0 0 15px #c084fc;
     }
 
-    /* Lista de enlaces estilo neón con brillos */
+    /* Botones de enlaces con efectos vibrantes */
     .links {
       display: flex;
       flex-direction: column;
@@ -294,21 +310,20 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      background: rgba(12, 4, 20, 0.85);
+      background: rgba(20, 5, 35, 0.9);
       color: #fff;
       text-decoration: none;
-      padding: 14px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 15px;
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
+      padding: 15px;
+      border-radius: 16px;
+      font-weight: 800;
+      font-size: 16px;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
     }
 
-    /* Destello de luz al pasar el cursor sobre los botones */
     .link-btn::before {
       content: '';
       position: absolute;
@@ -316,8 +331,8 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: 0.6s;
     }
 
     .link-btn:hover::before {
@@ -325,15 +340,15 @@
     }
 
     .link-btn:hover {
-      background: rgba(168, 85, 247, 0.2);
-      border-color: #ef4444;
-      transform: translateY(-3px);
-      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 0 10px rgba(168, 85, 247, 0.5);
+      background: rgba(168, 85, 247, 0.25);
+      border-color: #f87171;
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.6), 0 0 15px rgba(168, 85, 247, 0.6);
       color: #fff;
     }
 
     .link-btn i {
-      font-size: 20px;
+      font-size: 22px;
     }
   </style>
 </head>
@@ -354,7 +369,7 @@
       <div class="avatar-container">
         <img src="avatar.png" alt="Avatar Zerok" class="avatar">
         <div class="live-badge">
-          <span class="live-dot"></span> Kick
+          <span class="live-dot"></span> Kick Live
         </div>
       </div>
       
